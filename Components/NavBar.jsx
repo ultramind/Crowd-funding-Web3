@@ -36,7 +36,7 @@ const NavBar = () => {
             </ul>
           </div>
           {!currentAccount && (
-            <ul className="flex items-center space-x-8">
+            <ul className="flex items-center hidden space-x-8">
               <li>
                 <button
                   onClick={() => connectWallet()}
