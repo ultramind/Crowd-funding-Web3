@@ -8,5 +8,18 @@ import Menu from "./menu";
 import ICON from "./ICON";
 import Close from "./Close";
 import Arrow from "./Arrow";
+import AddCampaign from "./AddCapaign";
 
-export { NavBar, Footer, Hero, Card, PupUp, Logo, Menu, ICON, Close, Arrow };
+export {
+  NavBar,
+  Footer,
+  Hero,
+  Card,
+  PupUp,
+  Logo,
+  Menu,
+  ICON,
+  Close,
+  Arrow,
+  AddCampaign,
+};
