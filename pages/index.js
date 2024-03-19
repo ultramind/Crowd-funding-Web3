@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import { crowdingFundingContext } from "../Context/CrowdFunding";
+import { CrowdingFundingContext } from "../Context/CrowdFunding";
 import { Card, Hero, PupUp } from "../Components";
 
 const index = () => {
@@ -11,28 +11,29 @@ const index = () => {
     getUserCampaign,
     getDonations,
     donate,
-  } = useContext(crowdingFundingContext);
+  } = useContext(CrowdingFundingContext);
 
   const [allCampaign, setAllCampaign] = useState([]);
   const [userCampaign, setUserCampaign] = useState([]);
 
-  // useEffect(() => {
-  //   const getAllCampaignData = getCampaign();
-  //   const getUserCampaignData = getUserCampaign();
+  useEffect(() => {
+    // const getAllCampaignData = getCampaign();
+    // console.log(getAllCampaignData);
+    // const getUserCampaignData = getUserCampaign();
 
-  //   return async () => {
-  //     const getAllData = await getAllCampaignData;
-  //     const getUserData = await getUserCampaignData;
-  //     setAllCampaign(getAllData);
-  //     setUserCampaign(getUserData);
-  //   };
-  // }, []);
+    return async () => {
+      // const getAllData = await getAllCampaignData;
+      // const getUserData = await getUserCampaignData;
+      // setAllCampaign(getAllData);
+      // setUserCampaign(getUserData);
+    };
+  }, []);
 
   // modal
   const [openModal, setOpenModal] = useState(false);
   const [donateCampaign, setDonateCampaign] = useState();
 
-  console.log(donateCampaign);
+  // console.log(donateCampaign);
 
   return (
     <>

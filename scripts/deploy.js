@@ -6,7 +6,7 @@ async function main() {
 
   await crowdFunding.deployed();
 
-  console.log(`crowdFunding deployed to ${crowdFunding.address}`);
+  console.log(`crowdFunding contract deployed to ${crowdFunding.address}`);
 }
 
 main().catch((error) => {

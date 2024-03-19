@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import Wenb3Modal from "web3modal";
 import { ethers } from "ethers";
 
-import { crowdFundingABI, crowdFundingAddress } from "./contants";
+import { CrowdFundingABI, CrowdFundingAddress } from "./contants";
 // fetch the contra
 
 const fetchContract = (signerOrProvider) => {
-  new ethers.Contract(crowdFundingAddress, crowdFundingABI, signerOrProvider);
+  new ethers.Contract(CrowdFundingAddress, CrowdFundingABI, signerOrProvider);
 };
 
-export const crowdingFundingContext = React.createContext();
+export const CrowdingFundingContext = React.createContext();
 
 export const CrowdFundingProvider = ({ children }) => {
   const titleData = "CrowdFunding Contract";
-  const [currentAccount, setCurrentAccount] = useState("");
+  const [currentAccount, setCurrentAccount] = useState(null);
 
   const createCampaign = async (campaign) => {
     const { title, description, amount, deadline } = campaign;
@@ -26,7 +26,7 @@ export const CrowdFundingProvider = ({ children }) => {
     console.log(currentAccount);
     try {
       const transaction = await contract.createCampaign(
-        currentAccount,
+        currentAccount, 
         title,
         description,
         ethers.utils.parseUnits(amount, 18),
@@ -75,7 +75,7 @@ export const CrowdFundingProvider = ({ children }) => {
     const currentUser = accounts[0];
 
     const filteredCampaigns = allCampaigns.filter(
-      (campaign) => campaign.owner === "oxfilndlnscdsncdjncsdhjscldc"
+      (campaign) => campaign.owner === currentUser
     );
 
     const userData = filteredCampaigns.map((campaign, i) => ({
@@ -146,7 +146,7 @@ export const CrowdFundingProvider = ({ children }) => {
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
       } else {
-        console.log("No Account found");
+        console.log("No connection");
       }
     } catch (error) {
       console.log("Something wrong while connecting to wallet");
@@ -173,7 +173,7 @@ export const CrowdFundingProvider = ({ children }) => {
   };
 
   return (
-    <crowdingFundingContext.Provider
+    <CrowdingFundingContext.Provider
       value={{
         titleData,
         currentAccount,
@@ -186,6 +186,6 @@ export const CrowdFundingProvider = ({ children }) => {
       }}
     >
       {children}
-    </crowdingFundingContext.Provider>
+    </CrowdingFundingContext.Provider>
   );
 };

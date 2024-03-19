@@ -2,11 +2,11 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 
-import { crowdingFundingContext } from "../Context/CrowdFunding";
+import { CrowdingFundingContext } from "../Context/CrowdFunding";
 import { Logo, Menu } from "../Components/index";
 
 const NavBar = () => {
-  const { currentAccount, connectWallet } = useContext(crowdingFundingContext);
+  const { currentAccount, connectWallet } = useContext(CrowdingFundingContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuList = ["White Paper", "Project", "Donation", "Members"];
 
@@ -35,8 +35,8 @@ const NavBar = () => {
               ))}
             </ul>
           </div>
-          {!currentAccount && (
-            <ul className="flex items-center hidden space-x-8">
+          {currentAccount == null && (
+            <ul className="items-center hidden md:flex lg:flex space-x-8">
               <li>
                 <button
                   onClick={() => connectWallet()}
@@ -45,6 +45,20 @@ const NavBar = () => {
                   title="Sign Up"
                 >
                   Connect Wallet
+                </button>
+              </li>
+            </ul>
+          )}
+          {currentAccount != null && (
+            <ul className="items-center hidden md:flex lg:flex space-x-8">
+              <li>
+                ≈
+                <button
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-400 transition duration-300 rounded shadow-md bg-transparent hover:bg-transparent focus:shadow-outline focus:outline-none backgroud"
+                  aria-label="Sign Up"
+                  title="Sign Up"
+                >
+                  Connected...
                 </button>
               </li>
             </ul>
